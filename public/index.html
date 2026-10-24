@@ -106,6 +106,11 @@
       .button:disabled { cursor: wait; opacity: .65; transform: none; }
       .contact-status { min-height: 1.35em; margin: 0; color: var(--teal); font-size: 12px; line-height: 1.4; }
       .contact-status[data-state="error"] { color: var(--danger); }
+      .contact-success { padding: 24px; border: 1px solid var(--teal); border-radius: 8px; background: #0d1b22; text-align: center; }
+      .contact-success[hidden] { display: none; }
+      .contact-success h2 { margin: 0 0 8px; color: var(--teal); font-size: 20px; }
+      .contact-success p { margin: 0; color: var(--text); font-size: 14px; line-height: 1.5; }
+      .contact-content[hidden] { display: none; }
       .honeypot { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
       @media (max-width: 900px) {
         .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -231,6 +236,11 @@
         </section>
 
         <section class="contact-panel" aria-labelledby="contact-title">
+          <div class="contact-success" id="contact-success" role="status" aria-live="polite" tabindex="-1" hidden>
+            <h2 id="contact-success-title">Thank you</h2>
+            <p>Shepherd IT Solutions will get in touch with you shortly.</p>
+          </div>
+          <div class="contact-content" id="contact-content">
           <div class="contact-heading">
             <h2 id="contact-title">Request help</h2>
             <button class="change-category" type="button" id="change-category">Change category</button>
@@ -283,6 +293,7 @@
             <button class="button" id="contact-submit" type="submit">Send request <span aria-hidden="true">→</span></button>
             <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
           </form>
+          </div>
         </section>
       </main>
     </div>
@@ -299,6 +310,8 @@
       const categoryCards = [...document.querySelectorAll('.category-card')];
       const assistanceSelect = document.getElementById('contact-assistance');
       const contactPanel = document.querySelector('.contact-panel');
+      const contactSuccess = document.getElementById('contact-success');
+      const contactContent = document.getElementById('contact-content');
       const selectedCategoryPanel = document.getElementById('selected-category');
       const selectedIcon = document.getElementById('selected-icon');
       const selectedTitle = document.getElementById('selected-category-title');
@@ -334,7 +347,17 @@
       }
 
       for (const card of categoryCards) {
-        card.addEventListener('click', () => selectCategory(card.dataset.category, true));
+        card.addEventListener('click', () => {
+          if (!contactSuccess.hidden) {
+            contactForm.reset();
+            contactStatus.textContent = '';
+            contactStatus.dataset.state = '';
+            contactContent.hidden = false;
+            contactSuccess.hidden = true;
+            contactPanel.setAttribute('aria-labelledby', 'contact-title');
+          }
+          selectCategory(card.dataset.category, true);
+        });
       }
       assistanceSelect.addEventListener('change', () => selectCategory(assistanceSelect.value));
       document.getElementById('change-category').addEventListener('click', () => {
@@ -397,10 +420,10 @@
             throw new Error(typeof result.message === 'string' ? result.message : 'We could not send your request. Please try again later.');
           }
 
-          contactForm.reset();
-          selectCategory('');
-          contactStatus.textContent = 'Thanks — your request has been sent.';
-          contactStatus.dataset.state = 'success';
+          contactContent.hidden = true;
+          contactPanel.setAttribute('aria-labelledby', 'contact-success-title');
+          contactSuccess.hidden = false;
+          contactSuccess.focus();
         } catch (error) {
           contactStatus.textContent = error instanceof Error ? error.message : 'We could not send your request. Please try again later.';
           contactStatus.dataset.state = 'error';
