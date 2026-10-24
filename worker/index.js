@@ -11,6 +11,7 @@ const ASSISTANCE_TYPES = new Set([
   "Networking",
   "Video Surveillance Systems",
   "Cell-Phone",
+  "TV & Smart Home",
 ]);
 
 function jsonResponse(payload, status = 200) {

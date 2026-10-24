@@ -1,7 +1,7 @@
 Bootstrap Icons device silhouettes are embedded and adapted in the Shepherd IT category illustrations.
 
 Source: https://github.com/twbs/icons
-Icons used: pc-display, laptop, controller, phone, router, camera-video.
+Icons used: pc-display, laptop, controller, phone, router, camera-video, tv, speaker.
 License: MIT
 
 The MIT License (MIT)

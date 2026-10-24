@@ -46,7 +46,7 @@
       h1, h2, h3, p { margin-top: 0; }
       h1 { margin-bottom: 8px; color: var(--text); font-size: clamp(27px, 3vw, 38px); line-height: 1.08; letter-spacing: -.045em; }
       .intro { margin: 0 0 17px; color: var(--muted); font-size: 13px; line-height: 1.5; }
-      .category-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+      .category-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
       .category-card {
         display: flex;
         min-height: 128px;
@@ -116,21 +116,18 @@
       @media (max-width: 900px) {
         .category-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
         .category-card { grid-column: span 2; }
-        .category-card:nth-child(4) { grid-column: 2 / span 2; }
-        .category-card:nth-child(5) { grid-column: 4 / span 2; }
         .category-grid { gap: 7px; }
         .category-card { min-height: 102px; }
       }
       @media (max-width: 720px) {
-        .shell { width: min(100% - 24px, 560px); }
+        .shell { width: min(calc(100% - 24px), 560px); }
         .site-header { min-height: 70px; }
         .site-location { font-size: 11px; }
         .layout { grid-template-columns: 1fr; gap: 12px; padding-top: 12px; }
         .chooser, .contact-panel { padding: 15px; }
         .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
         .category-card { min-height: 91px; }
-        .category-card, .category-card:nth-child(4) { grid-column: auto; }
-        .category-card:nth-child(5) { grid-column: 1 / -1; width: 50%; justify-self: center; }
+        .category-card { grid-column: auto; }
         .category-icon { width: 48px; height: 48px; }
         .category-name { font-size: 11px; }
         .selected-category { gap: 8px; margin-bottom: 11px; padding: 8px 10px; }
@@ -144,7 +141,6 @@
       @media (max-width: 380px) {
         .site-location { max-width: 100%; text-align: center; }
         .category-card { min-height: 96px; }
-        .category-card:nth-child(5) { grid-column: 1 / -1; }
         .category-icon { width: 42px; height: 42px; }
         .category-name { font-size: 10px; }
         .form-row { gap: 7px; }
@@ -198,6 +194,20 @@
                 <circle cx="45" cy="25" r="2.5" fill="#57a9ff"/><circle cx="51" cy="31" r="2.5" fill="#f4c66a"/><circle cx="45" cy="37" r="2.5" fill="#55dfcc"/>
               </svg>
               <span class="category-name">Game Console</span>
+            </button>
+
+            <button class="category-card" type="button" data-category="TV &amp; Smart Home" aria-pressed="false">
+              <svg class="category-icon" viewBox="0 0 64 64" aria-hidden="true">
+                <defs><linearGradient id="smartTv" x2="0" y2="1"><stop stop-color="#e7f1f8"/><stop offset="1" stop-color="#748da4"/></linearGradient><linearGradient id="smartScreen" x2="0" y2="1"><stop stop-color="#43a6d9"/><stop offset="1" stop-color="#17314e"/></linearGradient><linearGradient id="smartSpeaker" x2="0" y2="1"><stop stop-color="#dce9f3"/><stop offset="1" stop-color="#607990"/></linearGradient></defs>
+                <rect x="9" y="14" width="42" height="24" rx="1.5" fill="url(#smartScreen)"/>
+                <use href="/icons/bootstrap-devices.svg#tv" x="4" y="5" width="52" height="48" fill="#172638" transform="translate(0 1.5)"/>
+                <use href="/icons/bootstrap-devices.svg#tv" x="4" y="5" width="52" height="48" fill="url(#smartTv)"/>
+                <path d="m26 21 11 6-11 6z" fill="#dff7ff" opacity=".9"/>
+                <use href="/icons/bootstrap-devices.svg#speaker" x="38" y="29" width="24" height="33" fill="#172638" transform="translate(0 1)"/>
+                <use href="/icons/bootstrap-devices.svg#speaker" x="38" y="29" width="24" height="33" fill="url(#smartSpeaker)"/>
+                <circle cx="52" cy="42" r="2.2" fill="#55dfcc"/>
+              </svg>
+              <span class="category-name">TV &amp; Smart Home</span>
             </button>
 
             <button class="category-card" type="button" data-category="Cell-Phone" aria-pressed="false">
@@ -263,6 +273,7 @@
                 <option value="">Choose a category</option>
                 <option value="Computers &amp; Laptops">Computers &amp; Laptops</option>
                 <option value="Game Console">Game Console</option>
+                <option value="TV &amp; Smart Home">TV &amp; Smart Home</option>
                 <option value="Cell-Phone">Cell-Phone</option>
                 <option value="Networking">Networking</option>
                 <option value="Video Surveillance Systems">Video Surveillance Systems</option>
@@ -302,10 +313,11 @@
 
     <script>
       const categoryDescriptions = {
-        'Computers & Laptops': 'Help with gaming, personal, or work computers and laptops: setup, hardware and upgrades, software installation and configuration (including Office), performance, security or virus concerns, account and password access, and everyday troubleshooting.',
+        'Computers & Laptops': 'Help with gaming, personal, or work computers, laptops, printers, and scanners: setup, hardware upgrades, software installation and configuration (including Office), printer Wi-Fi and drivers, printing and scanning, performance, security or virus concerns, account and password access, and everyday troubleshooting.',
         'Game Console': 'Help with console setup, games, controllers, online connections, accounts, storage, and other common issues.',
         'Networking': 'Help with Wi-Fi, routers, switches, wired connections, coverage, setup, and figuring out why devices will not connect.',
         'Video Surveillance Systems': 'Help setting up and connecting cameras, viewing them on your devices, recording, storage, and access or connection issues.',
+        'TV & Smart Home': 'Help setting up TVs, streaming devices, speakers, smart home devices, Wi-Fi connections, and getting your home technology working together.',
         'Cell-Phone': 'Help setting up a phone, moving data, sorting out apps and settings, connectivity, account access, and everyday issues.'
       };
       const categoryCards = [...document.querySelectorAll('.category-card')];
