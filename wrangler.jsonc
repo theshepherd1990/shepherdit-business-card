@@ -3,6 +3,9 @@
   "name": "shepherdit-business-card",
   "main": "./worker/index.js",
   "compatibility_date": "2026-10-23",
+  "secrets": {
+    "required": ["RE_API_KEY", "CONTACT_TO_EMAIL"]
+  },
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",

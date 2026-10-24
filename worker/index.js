@@ -91,7 +91,11 @@ export async function handleContact(request, env) {
   const apiKey = env.RE_API_KEY;
   const recipient = env.CONTACT_TO_EMAIL;
   if (!apiKey || !recipient) {
-    console.error("Contact form is missing a required runtime setting.");
+    const missingBindings = [
+      !apiKey && "RE_API_KEY",
+      !recipient && "CONTACT_TO_EMAIL",
+    ].filter(Boolean);
+    console.error("Contact form is missing runtime bindings:", missingBindings.join(", "));
     return jsonResponse({ ok: false, message: "The contact form is temporarily unavailable." }, 503);
   }
 
