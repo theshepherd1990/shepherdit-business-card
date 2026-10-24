@@ -14,14 +14,11 @@ Open [http://localhost:3000](http://localhost:3000). The page follows the visito
 
 For local email delivery, copy `.env.example` to `.env` and set `RE_API_KEY`, `CONTACT_TO_EMAIL`, and a Resend-verified `RE_FROM_EMAIL`. Never commit `.env`.
 
-## Build the Site Worker
+## Cloudflare Worker
 
-```sh
-npm run build
-npm run validate
-```
+`wrangler.jsonc` configures the `shepherd-it-site` Worker to serve files from `public/`, run the Worker for `/api/*`, and route `salsbury.org/api/*` to it.
 
-The Worker reads `RE_API_KEY`, `CONTACT_TO_EMAIL`, and `RE_FROM_EMAIL` from runtime bindings. Configure these in the hosted Site environment; mark the API key and recipient as secrets, and use a sender address verified in Resend.
+The Worker reads `RE_API_KEY`, `CONTACT_TO_EMAIL`, and `RE_FROM_EMAIL` from runtime bindings. Set these on the `shepherd-it-site` Worker; mark the API key and recipient as secrets, and use a sender address at a domain verified in Resend.
 
 ## Update before launch
 
