@@ -39,17 +39,17 @@
       .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); font-size: 15px; font-weight: 750; letter-spacing: -.025em; text-decoration: none; }
       .brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid #46637c; border-radius: 7px; background: #192b3c; color: var(--teal); font-size: 15px; }
       .site-location { color: var(--muted); font-size: 12px; }
-      .layout { display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(390px, .97fr); align-items: start; gap: 20px; padding: 20px 0 28px; }
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 20px 0 30px; }
       .chooser, .contact-panel { min-width: 0; border: 1px solid var(--line); border-radius: 12px; background: rgba(17, 26, 38, .88); box-shadow: var(--shadow); }
       .chooser { padding: clamp(18px, 2.5vw, 28px); }
       .eyebrow { margin: 0 0 8px; color: var(--teal); font-size: 11px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
       h1, h2, h3, p { margin-top: 0; }
       h1 { margin-bottom: 8px; color: var(--text); font-size: clamp(27px, 3vw, 38px); line-height: 1.08; letter-spacing: -.045em; }
       .intro { margin: 0 0 17px; color: var(--muted); font-size: 13px; line-height: 1.5; }
-      .category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+      .category-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
       .category-card {
         display: flex;
-        min-height: 112px;
+        min-height: 128px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -66,16 +66,20 @@
       .category-card:hover { border-color: #4c7a9a; background: #1a2a3a; transform: translateY(-1px); }
       .category-card[aria-pressed="true"] { border-color: var(--teal); background: var(--panel-selected); box-shadow: inset 0 0 0 1px rgba(85, 223, 204, .22); }
       .category-card:focus-visible, .button:focus-visible, .form-field input:focus-visible, .form-field select:focus-visible, .form-field textarea:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
-      .pixel-icon { width: 52px; height: 52px; image-rendering: pixelated; shape-rendering: crispEdges; }
+      .pixel-icon { width: 58px; height: 58px; image-rendering: pixelated; shape-rendering: crispEdges; }
       .category-name { max-width: 100%; color: var(--text); font-size: 12px; font-weight: 700; line-height: 1.2; }
-      .category-detail { min-height: 62px; margin-top: 12px; padding: 12px 14px; border-left: 3px solid #36506a; border-radius: 0 7px 7px 0; background: #0d1520; }
-      .category-detail[data-selected="true"] { border-left-color: var(--teal); }
-      .category-detail h2 { margin: 0 0 3px; color: var(--text); font-size: 13px; font-weight: 750; }
-      .category-detail p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
-      .contact-panel { padding: clamp(18px, 2.5vw, 26px); }
+      .contact-panel { max-width: 940px; margin: 0 auto; padding: clamp(18px, 2.5vw, 26px); scroll-margin-top: 14px; }
       .contact-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
       .contact-heading h2 { margin: 0; color: var(--text); font-size: 20px; letter-spacing: -.03em; }
       .required-note { margin: 0; color: var(--muted); font-size: 11px; }
+      .selected-category { display: grid; grid-template-columns: 58px 1fr; align-items: center; gap: 13px; margin: 0 0 15px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 8px; background: #0d1520; }
+      .selected-category[hidden] { display: none; }
+      .selected-category .pixel-icon { width: 54px; height: 54px; }
+      .selected-category h3 { margin: 0 0 3px; color: var(--text); font-size: 14px; font-weight: 750; }
+      .selected-category p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+      .selection-placeholder { margin: 0 0 15px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+      .selection-placeholder[hidden] { display: none; }
+      .change-category { padding: 0; border: 0; background: transparent; color: var(--blue); font-size: 11px; font-weight: 650; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
       .contact-form { display: grid; gap: 11px; }
       .form-field { display: grid; min-width: 0; align-content: start; gap: 5px; }
       .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -104,7 +108,7 @@
       .contact-status[data-state="error"] { color: var(--danger); }
       .honeypot { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
       @media (max-width: 900px) {
-        .layout { grid-template-columns: minmax(0, 1fr) minmax(330px, .9fr); gap: 12px; }
+        .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         .category-grid { gap: 7px; }
         .category-card { min-height: 102px; }
       }
@@ -112,13 +116,15 @@
         .shell { width: min(100% - 24px, 560px); }
         .site-header { min-height: 54px; }
         .site-location { font-size: 11px; }
-        .layout { grid-template-columns: 1fr; gap: 10px; padding-top: 12px; }
+        .layout { grid-template-columns: 1fr; gap: 12px; padding-top: 12px; }
         .chooser, .contact-panel { padding: 15px; }
-        .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+        .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
         .category-card { min-height: 91px; }
         .pixel-icon { width: 44px; height: 44px; }
         .category-name { font-size: 11px; }
-        .category-detail { min-height: 55px; margin-top: 9px; padding: 9px 11px; }
+        .selected-category { grid-template-columns: 48px 1fr; gap: 10px; margin-bottom: 11px; padding: 8px 10px; }
+        .selected-category .pixel-icon { width: 46px; height: 46px; }
+        .selection-placeholder { margin-bottom: 11px; }
         .contact-heading { margin-bottom: 10px; }
         .contact-form { gap: 9px; }
         .form-field input, .form-field select, .form-field textarea { min-height: 36px; padding: 7px 9px; }
@@ -126,7 +132,7 @@
       }
       @media (max-width: 380px) {
         .site-location { max-width: 125px; text-align: right; }
-        .category-card { min-height: 84px; }
+        .category-card { min-height: 96px; }
         .pixel-icon { width: 40px; height: 40px; }
         .category-name { font-size: 10px; }
         .form-row { gap: 7px; }
@@ -148,13 +154,13 @@
       </header>
 
       <main class="layout" id="main">
-        <section class="chooser" aria-labelledby="page-title">
+        <section class="chooser" id="categories" aria-labelledby="page-title">
           <p class="eyebrow">Shepherd IT support</p>
           <h1 id="page-title">What do you need help with?</h1>
           <p class="intro">Choose a category to see the kind of help available.</p>
 
           <div class="category-grid" role="group" aria-label="Choose a type of technology">
-            <button class="category-card" type="button" data-category="Gaming Computer" aria-pressed="false">
+            <button class="category-card" type="button" data-category="Gaming / Personal Computer" aria-pressed="false">
               <svg class="pixel-icon" viewBox="0 0 64 64" aria-hidden="true">
                 <g shape-rendering="crispEdges">
                   <rect x="6" y="8" width="38" height="30" fill="#8da5b8"/><rect x="10" y="12" width="30" height="22" fill="#16283c"/>
@@ -163,7 +169,7 @@
                   <rect x="46" y="15" width="13" height="34" fill="#667f96"/><rect x="49" y="19" width="7" height="24" fill="#1b2c3c"/><rect x="50" y="22" width="5" height="4" fill="#55dfcc"/><rect x="50" y="29" width="5" height="4" fill="#57a9ff"/><rect x="50" y="36" width="5" height="4" fill="#aa91ff"/><rect x="50" y="45" width="5" height="2" fill="#f4c66a"/>
                 </g>
               </svg>
-              <span class="category-name">Gaming Computer</span>
+              <span class="category-name">Gaming / Personal Computer</span>
             </button>
 
             <button class="category-card" type="button" data-category="Laptop" aria-pressed="false">
@@ -222,23 +228,27 @@
             </button>
           </div>
 
-          <div class="category-detail" id="category-detail" data-selected="false" aria-live="polite">
-            <h2 id="category-detail-title">Choose a category</h2>
-            <p id="category-detail-copy">The matching assistance type will be added to your request.</p>
-          </div>
         </section>
 
         <section class="contact-panel" aria-labelledby="contact-title">
           <div class="contact-heading">
             <h2 id="contact-title">Request help</h2>
-            <p class="required-note">* Required</p>
+            <button class="change-category" type="button" id="change-category">Change category</button>
           </div>
+          <div class="selected-category" id="selected-category" hidden aria-live="polite">
+            <div id="selected-icon" aria-hidden="true"></div>
+            <div>
+              <h3 id="selected-category-title"></h3>
+              <p id="selected-category-description"></p>
+            </div>
+          </div>
+          <p class="selection-placeholder" id="selection-placeholder">Choose a category above. Its description and assistance type will appear here.</p>
           <form class="contact-form" id="contact-form" novalidate>
             <div class="form-field">
               <label for="contact-assistance">Type of assistance *</label>
               <select id="contact-assistance" name="assistance" required>
                 <option value="">Choose a category</option>
-                <option value="Gaming Computer">Gaming Computer</option>
+                <option value="Gaming / Personal Computer">Gaming / Personal Computer</option>
                 <option value="Laptop">Laptop</option>
                 <option value="Game Console">Game Console</option>
                 <option value="Network Switch">Network Switch</option>
@@ -279,7 +289,7 @@
 
     <script>
       const categoryDescriptions = {
-        'Gaming Computer': 'Build setup, graphics and performance issues, cooling, peripherals, and troubleshooting.',
+        'Gaming / Personal Computer': 'Help with gaming and personal computers: hardware setup, software installation and configuration, Microsoft Office, viruses and malware, and password or account access troubleshooting.',
         'Laptop': 'Setup, slow performance, Wi-Fi, updates, data transfer, and common hardware issues.',
         'Game Console': 'Console setup, network connection, controller pairing, updates, and common troubleshooting.',
         'Network Switch': 'Switch setup, wired connections, port issues, and small-network troubleshooting.',
@@ -288,28 +298,49 @@
       };
       const categoryCards = [...document.querySelectorAll('.category-card')];
       const assistanceSelect = document.getElementById('contact-assistance');
-      const detailPanel = document.getElementById('category-detail');
-      const detailTitle = document.getElementById('category-detail-title');
-      const detailCopy = document.getElementById('category-detail-copy');
+      const contactPanel = document.querySelector('.contact-panel');
+      const selectedCategoryPanel = document.getElementById('selected-category');
+      const selectedIcon = document.getElementById('selected-icon');
+      const selectedTitle = document.getElementById('selected-category-title');
+      const selectedDescription = document.getElementById('selected-category-description');
+      const selectionPlaceholder = document.getElementById('selection-placeholder');
+      const categoriesPanel = document.getElementById('categories');
 
-      function selectCategory(category) {
+      function selectCategory(category, scrollToForm = false) {
         const validCategory = Object.hasOwn(categoryDescriptions, category) ? category : '';
         assistanceSelect.value = validCategory;
+        const selectedCard = categoryCards.find((card) => card.dataset.category === validCategory);
         for (const card of categoryCards) {
           const selected = card.dataset.category === validCategory;
           card.setAttribute('aria-pressed', String(selected));
         }
-        detailPanel.dataset.selected = String(Boolean(validCategory));
-        detailTitle.textContent = validCategory || 'Choose a category';
-        detailCopy.textContent = validCategory
-          ? categoryDescriptions[validCategory]
-          : 'The matching assistance type will be added to your request.';
+        if (selectedCard) {
+          selectedIcon.replaceChildren(selectedCard.querySelector('svg').cloneNode(true));
+          selectedTitle.textContent = validCategory;
+          selectedDescription.textContent = categoryDescriptions[validCategory];
+          selectedCategoryPanel.hidden = false;
+          selectionPlaceholder.hidden = true;
+        } else {
+          selectedIcon.replaceChildren();
+          selectedTitle.textContent = '';
+          selectedDescription.textContent = '';
+          selectedCategoryPanel.hidden = true;
+          selectionPlaceholder.hidden = false;
+        }
+        if (scrollToForm && validCategory) {
+          const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+          requestAnimationFrame(() => contactPanel.scrollIntoView({ behavior, block: 'start' }));
+        }
       }
 
       for (const card of categoryCards) {
-        card.addEventListener('click', () => selectCategory(card.dataset.category));
+        card.addEventListener('click', () => selectCategory(card.dataset.category, true));
       }
       assistanceSelect.addEventListener('change', () => selectCategory(assistanceSelect.value));
+      document.getElementById('change-category').addEventListener('click', () => {
+        const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+        categoriesPanel.scrollIntoView({ behavior, block: 'start' });
+      });
 
       const contactForm = document.getElementById('contact-form');
       const contactStatus = document.getElementById('contact-status');

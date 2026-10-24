@@ -6,7 +6,7 @@ const JSON_HEADERS = {
 };
 const MAX_BODY_BYTES = 12_000;
 const ASSISTANCE_TYPES = new Set([
-  "Gaming Computer",
+  "Gaming / Personal Computer",
   "Laptop",
   "Game Console",
   "Network Switch",
