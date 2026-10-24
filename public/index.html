@@ -330,9 +330,18 @@
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(payload),
           });
-          const result = await response.json();
-          if (!response.ok || !result.ok) {
-            throw new Error(result.message || 'We could not send your message. Please try again later.');
+          const responseText = await response.text();
+          let result = null;
+          try {
+            result = responseText ? JSON.parse(responseText) : null;
+          } catch {
+            // A proxy or stale Worker may return HTML or an empty body instead of JSON.
+          }
+          if (!result || typeof result !== 'object') {
+            throw new Error(`The contact service returned an invalid response (HTTP ${response.status}). Please try again later.`);
+          }
+          if (!response.ok || result.ok !== true) {
+            throw new Error(typeof result.message === 'string' ? result.message : 'We could not send your message. Please try again later.');
           }
 
           contactForm.reset();
