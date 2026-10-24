@@ -194,7 +194,7 @@
               <span class="category-name">Game Console</span>
             </button>
 
-            <button class="category-card" type="button" data-category="Network Switch" aria-pressed="false">
+            <button class="category-card" type="button" data-category="Networking" aria-pressed="false">
               <svg class="pixel-icon" viewBox="0 0 64 64" aria-hidden="true">
                 <g shape-rendering="crispEdges">
                   <rect x="5" y="18" width="54" height="29" fill="#899eb1"/><rect x="9" y="22" width="46" height="20" fill="#1b2b3b"/>
@@ -202,7 +202,7 @@
                   <rect x="13" y="36" width="3" height="3" fill="#55dfcc"/><rect x="21" y="36" width="3" height="3" fill="#57a9ff"/><rect x="29" y="36" width="3" height="3" fill="#55dfcc"/><rect x="37" y="36" width="3" height="3" fill="#f4c66a"/><rect x="47" y="36" width="4" height="3" fill="#71869a"/>
                 </g>
               </svg>
-              <span class="category-name">Network Switch</span>
+              <span class="category-name">Networking</span>
             </button>
 
             <button class="category-card" type="button" data-category="Video Surveillance Camera" aria-pressed="false">
@@ -251,7 +251,7 @@
                 <option value="Gaming / Personal Computer">Gaming / Personal Computer</option>
                 <option value="Laptop">Laptop</option>
                 <option value="Game Console">Game Console</option>
-                <option value="Network Switch">Network Switch</option>
+                <option value="Networking">Networking</option>
                 <option value="Video Surveillance Camera">Video Surveillance Camera</option>
                 <option value="Cell-Phone">Cell-Phone</option>
               </select>
@@ -289,12 +289,12 @@
 
     <script>
       const categoryDescriptions = {
-        'Gaming / Personal Computer': 'Help with gaming and personal computers: hardware setup, software installation and configuration, Microsoft Office, viruses and malware, and password or account access troubleshooting.',
-        'Laptop': 'Setup, slow performance, Wi-Fi, updates, data transfer, and common hardware issues.',
-        'Game Console': 'Console setup, network connection, controller pairing, updates, and common troubleshooting.',
-        'Network Switch': 'Switch setup, wired connections, port issues, and small-network troubleshooting.',
-        'Video Surveillance Camera': 'Camera setup, network connection, viewing apps, recording, and basic troubleshooting.',
-        'Cell-Phone': 'Phone setup, data transfer, connectivity, apps, and common settings.'
+        'Gaming / Personal Computer': 'Help setting up a gaming or everyday PC, installing and configuring software (including Office), improving performance, handling security issues, and sorting out passwords or other problems.',
+        'Laptop': 'Help with laptop setup, software, performance, updates, connectivity, files, account access, and everyday troubleshooting.',
+        'Game Console': 'Help with console setup, games, controllers, online connections, accounts, storage, and other common issues.',
+        'Networking': 'Help with Wi-Fi, routers, switches, wired connections, coverage, setup, and figuring out why devices will not connect.',
+        'Video Surveillance Camera': 'Help setting up and connecting cameras, viewing them on your devices, recording, storage, and access or connection issues.',
+        'Cell-Phone': 'Help setting up a phone, moving data, sorting out apps and settings, connectivity, account access, and everyday issues.'
       };
       const categoryCards = [...document.querySelectorAll('.category-card')];
       const assistanceSelect = document.getElementById('contact-assistance');
