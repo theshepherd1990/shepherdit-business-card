@@ -5,6 +5,14 @@ const JSON_HEADERS = {
   "x-content-type-options": "nosniff",
 };
 const MAX_BODY_BYTES = 12_000;
+const ASSISTANCE_TYPES = new Set([
+  "Gaming Computer",
+  "Laptop",
+  "Game Console",
+  "Network Switch",
+  "Video Surveillance Camera",
+  "Cell-Phone",
+]);
 
 function jsonResponse(payload, status = 200) {
   return new Response(JSON.stringify(payload), { status, headers: JSON_HEADERS });
@@ -65,6 +73,7 @@ export async function handleContact(request, env) {
   if (cleanString(form.website, 200)) return jsonResponse({ ok: true });
 
   const name = cleanString(form.name, 100);
+  const assistance = cleanString(form.assistance, 100);
   const email = cleanString(form.email, 254).toLowerCase();
   const phone = cleanString(form.phone, 40);
   const message = cleanString(form.message, 5_000);
@@ -74,6 +83,9 @@ export async function handleContact(request, env) {
   }
   if (!name || /[\r\n]/.test(name)) {
     return jsonResponse({ ok: false, message: "Please enter your name." }, 400);
+  }
+  if (!ASSISTANCE_TYPES.has(assistance)) {
+    return jsonResponse({ ok: false, message: "Please choose the type of assistance you need." }, 400);
   }
   if (email && !isValidEmail(email)) {
     return jsonResponse({ ok: false, message: "Please enter a valid email address." }, 400);
@@ -101,6 +113,7 @@ export async function handleContact(request, env) {
 
   const emailBody = [
     `Name: ${name}`,
+    `Type of assistance: ${assistance}`,
     `Email: ${email || "Not provided"}`,
     `Phone: ${phone || "Not provided"}`,
     "",
