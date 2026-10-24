@@ -90,8 +90,7 @@ export async function handleContact(request, env) {
 
   const apiKey = env.RE_API_KEY;
   const recipient = env.CONTACT_TO_EMAIL;
-  const sender = env.RE_FROM_EMAIL;
-  if (!apiKey || !recipient || !sender) {
+  if (!apiKey || !recipient) {
     console.error("Contact form is missing a required runtime setting.");
     return jsonResponse({ ok: false, message: "The contact form is temporarily unavailable." }, 503);
   }
@@ -106,7 +105,7 @@ export async function handleContact(request, env) {
   ].join("\n");
 
   const resendPayload = {
-    from: sender,
+    from: "Shepherd IT Contact <website@salsbury.org>",
     to: [recipient],
     subject: `Website inquiry from ${name}`,
     text: emailBody,

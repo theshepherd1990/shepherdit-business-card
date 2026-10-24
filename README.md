@@ -12,13 +12,13 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000). The page follows the visitor's system light or dark preference. The contact endpoint uses the same Worker implementation locally.
 
-For local email delivery, copy `.env.example` to `.env` and set `RE_API_KEY`, `CONTACT_TO_EMAIL`, and a Resend-verified `RE_FROM_EMAIL`. Never commit `.env`.
+For local email delivery, copy `.env.example` to `.env` and set `RE_API_KEY` and `CONTACT_TO_EMAIL`. Never commit `.env`.
 
 ## Cloudflare Worker
 
 `wrangler.jsonc` configures the `shepherd-it-site` Worker to serve files from `public/`, run the Worker for `/api/*`, and route `salsbury.org/api/*` to it.
 
-The Worker reads `RE_API_KEY`, `CONTACT_TO_EMAIL`, and `RE_FROM_EMAIL` from runtime bindings. Set these on the `shepherd-it-site` Worker; mark the API key and recipient as secrets, and use a sender address at a domain verified in Resend.
+The Worker reads `RE_API_KEY` and `CONTACT_TO_EMAIL` from runtime bindings. Set both on the `shepherd-it-site` Worker as secrets. It sends from the generic `website@salsbury.org` address, which must belong to a domain verified in Resend. A visitor's email is used as `reply_to` when provided.
 
 ## Update before launch
 
