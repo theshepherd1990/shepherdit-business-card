@@ -10,7 +10,7 @@ const ASSISTANCE_TYPES = new Set([
   "Laptop",
   "Game Console",
   "Networking",
-  "Video Surveillance Camera",
+  "Video Surveillance Systems",
   "Cell-Phone",
 ]);
 
