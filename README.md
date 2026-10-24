@@ -16,9 +16,9 @@ For local email delivery, copy `.env.example` to `.env` and set `RE_API_KEY` and
 
 ## Cloudflare Worker
 
-`wrangler.jsonc` configures the `shepherd-it-site` Worker to serve files from `public/`, run the Worker for `/api/*`, and route `salsbury.org/api/*` to it.
+`wrangler.jsonc` configures the `shepherdit-business-card` Worker to serve files from `public/`, run the Worker for `/api/*`, and route `salsbury.org/api/*` to it.
 
-The Worker reads `RE_API_KEY` and `CONTACT_TO_EMAIL` from runtime bindings. Set both on the `shepherd-it-site` Worker as secrets. It sends from the generic `website@salsbury.org` address, which must belong to a domain verified in Resend. A visitor's email is used as `reply_to` when provided.
+The Worker reads `RE_API_KEY` and `CONTACT_TO_EMAIL` from runtime bindings. Set both on the `shepherdit-business-card` Worker as secrets. It sends from the generic `website@salsbury.org` address, which must belong to a domain verified in Resend. A visitor's email is used as `reply_to` when provided.
 
 ## Update before launch
 
