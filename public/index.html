@@ -79,7 +79,6 @@
       .selected-category p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
       .selection-placeholder { margin: 0 0 15px; color: var(--muted); font-size: 12px; line-height: 1.45; }
       .selection-placeholder[hidden] { display: none; }
-      .change-category { padding: 0; border: 0; background: transparent; color: var(--blue); font-size: 11px; font-weight: 650; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
       .contact-form { display: grid; width: min(100%, 680px); gap: 11px; margin: 0 auto; text-align: center; }
       .form-field { display: grid; min-width: 0; align-content: start; justify-items: center; gap: 5px; }
       .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -256,7 +255,6 @@
           <div class="contact-content" id="contact-content">
           <div class="contact-heading">
             <h2 id="contact-title">Support Request Form</h2>
-            <button class="change-category" type="button" id="change-category">Change category</button>
           </div>
           <div class="selected-category" id="selected-category" hidden aria-live="polite">
             <div id="selected-icon" aria-hidden="true"></div>
@@ -330,7 +328,6 @@
       const selectedTitle = document.getElementById('selected-category-title');
       const selectedDescription = document.getElementById('selected-category-description');
       const selectionPlaceholder = document.getElementById('selection-placeholder');
-      const categoriesPanel = document.getElementById('categories');
 
       function selectCategory(category, scrollToForm = false) {
         const validCategory = Object.hasOwn(categoryDescriptions, category) ? category : '';
@@ -373,11 +370,6 @@
         });
       }
       assistanceSelect.addEventListener('change', () => selectCategory(assistanceSelect.value));
-      document.getElementById('change-category').addEventListener('click', () => {
-        const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-        categoriesPanel.scrollIntoView({ behavior, block: 'start' });
-      });
-
       const contactForm = document.getElementById('contact-form');
       const contactStatus = document.getElementById('contact-status');
       const contactSubmit = document.getElementById('contact-submit');
