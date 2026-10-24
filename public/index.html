@@ -192,8 +192,24 @@
 
 <button class="category-card" type="button" data-category="Cell-Phone" aria-pressed="false">
               <svg class="category-icon" viewBox="0 0 64 64" aria-hidden="true">
-  <defs><linearGradient id="phoneSide" x2="1" y2="1"><stop stop-color="#d5e3ee"/><stop offset="1" stop-color="#71879c"/></linearGradient><linearGradient id="phoneScreen" x2="0" y2="1"><stop stop-color="#347eb5"/><stop offset="1" stop-color="#15283f"/></linearGradient></defs>
-  <path d="m25 6 24 6v39l-24-6z" fill="url(#phoneSide)" stroke="#e2edf5" stroke-width="1.5"/><path d="m20 10 5-4v39l-5 4z" fill="#50677d"/><path d="m25 11 20 5v30l-20-5z" fill="url(#phoneScreen)"/><path d="m29 16 12 3v3l-12-3z" fill="#d4f0ff" opacity=".8"/><path d="m29 23 6 1.5v6L29 29z" fill="#55dfcc"/><path d="m37 25 6 1.5v6L37 31z" fill="#f4c66a"/><path d="m29 32 6 1.5v6L29 38z" fill="#aa91ff"/><path d="m37 34 6 1.5v6L37 40z" fill="#57a9ff"/><path d="m33 43 5 1.2" stroke="#d5e8f5" stroke-width="1.5" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="phoneFrame" x2="1" y2="1"><stop stop-color="#e2edf6"/><stop offset=".55" stop-color="#9eb3c6"/><stop offset="1" stop-color="#526b83"/></linearGradient>
+                  <linearGradient id="phoneDepth" x2="1" y2="1"><stop stop-color="#607990"/><stop offset="1" stop-color="#263b50"/></linearGradient>
+                  <linearGradient id="phoneDisplay" x2="0" y2="1"><stop stop-color="#3987c0"/><stop offset="1" stop-color="#10243c"/></linearGradient>
+                </defs>
+                <path d="M47 8 51 11v43l-4 5z" fill="url(#phoneDepth)" stroke="#8ca2b6" stroke-width="1"/>
+                <rect x="16" y="4" width="32" height="56" rx="6" fill="url(#phoneFrame)" stroke="#e4eff7" stroke-width="1.5"/>
+                <rect x="20" y="11" width="24" height="42" rx="3" fill="url(#phoneDisplay)"/>
+                <path d="M27 8h10" stroke="#34495d" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="40" cy="8" r="1.2" fill="#34495d"/>
+                <path d="M22 15h5" stroke="#d9f4ff" stroke-width="1" stroke-linecap="round" opacity=".9"/>
+                <rect x="23" y="20" width="7" height="7" rx="1.5" fill="#55dfcc"/>
+                <rect x="34" y="20" width="7" height="7" rx="1.5" fill="#f4c66a"/>
+                <rect x="23" y="31" width="7" height="7" rx="1.5" fill="#aa91ff"/>
+                <rect x="34" y="31" width="7" height="7" rx="1.5" fill="#57a9ff"/>
+                <path d="M24 43h16M24 47h10" stroke="#d5e8f5" stroke-width="1.5" stroke-linecap="round" opacity=".78"/>
+                <path d="M28 56h8" stroke="#33485d" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M48 22h2v8h-2" fill="#dce9f3"/><path d="M48 33h2v5h-2" fill="#dce9f3"/>
 </svg>
               <span class="category-name">Cell-Phone</span>
             </button>
