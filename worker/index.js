@@ -13,6 +13,7 @@ const ASSISTANCE_TYPES = new Set([
   "Cell-Phone",
   "TV & Smart Home",
 ]);
+const CONTACT_METHODS = new Set(["Doesn't Matter", "Call", "SMS", "Email"]);
 
 function jsonResponse(payload, status = 200) {
   return new Response(JSON.stringify(payload), { status, headers: JSON_HEADERS });
@@ -76,6 +77,7 @@ export async function handleContact(request, env) {
   const assistance = cleanString(form.assistance, 100);
   const email = cleanString(form.email, 254).toLowerCase();
   const phone = cleanString(form.phone, 40);
+  const contactMethod = cleanString(form.contactMethod, 40);
   const message = cleanString(form.message, 5_000);
 
   if (form.confirmed !== true) {
@@ -87,6 +89,9 @@ export async function handleContact(request, env) {
   if (!ASSISTANCE_TYPES.has(assistance)) {
     return jsonResponse({ ok: false, message: "Please choose the type of assistance you need." }, 400);
   }
+  if (!CONTACT_METHODS.has(contactMethod)) {
+    return jsonResponse({ ok: false, message: "Please choose a preferred method of contact." }, 400);
+  }
   if (email && !isValidEmail(email)) {
     return jsonResponse({ ok: false, message: "Please enter a valid email address." }, 400);
   }
@@ -95,6 +100,12 @@ export async function handleContact(request, env) {
   }
   if (!email && !phone) {
     return jsonResponse({ ok: false, message: "Please provide an email address or phone number." }, 400);
+  }
+  if (["Call", "SMS"].includes(contactMethod) && !phone) {
+    return jsonResponse({ ok: false, message: "Please provide a phone number for your preferred contact method." }, 400);
+  }
+  if (contactMethod === "Email" && !email) {
+    return jsonResponse({ ok: false, message: "Please provide an email address for your preferred contact method." }, 400);
   }
   if (!message || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(message)) {
     return jsonResponse({ ok: false, message: "Please enter a message." }, 400);
@@ -114,6 +125,7 @@ export async function handleContact(request, env) {
   const emailBody = [
     `Name: ${name}`,
     `Type of assistance: ${assistance}`,
+    `Preferred contact method: ${contactMethod}`,
     `Email: ${email || "Not provided"}`,
     `Phone: ${phone || "Not provided"}`,
     "",

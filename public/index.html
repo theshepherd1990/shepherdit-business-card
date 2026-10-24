@@ -293,6 +293,15 @@
               <p class="form-help">Provide an email address or phone number, or both.</p>
             </div>
             <div class="form-field">
+              <label for="contact-method">Preferred method of contact *</label>
+              <select id="contact-method" name="contactMethod" required>
+                <option value="Doesn't Matter">Doesn’t Matter</option>
+                <option value="Call">Call</option>
+                <option value="SMS">SMS</option>
+                <option value="Email">Email</option>
+              </select>
+            </div>
+            <div class="form-field">
               <label for="contact-message">What do you need help with? *</label>
               <textarea id="contact-message" name="message" maxlength="5000" required></textarea>
             </div>
@@ -375,6 +384,7 @@
       const contactSubmit = document.getElementById('contact-submit');
       const contactEmail = document.getElementById('contact-email');
       const contactPhone = document.getElementById('contact-phone');
+      const contactMethod = document.getElementById('contact-method');
 
       contactForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -384,6 +394,18 @@
         if (!contactForm.reportValidity()) return;
         if (!contactEmail.value.trim() && !contactPhone.value.trim()) {
           contactStatus.textContent = 'Please add an email address or phone number so we can reply.';
+          contactStatus.dataset.state = 'error';
+          contactEmail.focus();
+          return;
+        }
+        if (['Call', 'SMS'].includes(contactMethod.value) && !contactPhone.value.trim()) {
+          contactStatus.textContent = 'Please add a phone number for your selected contact method.';
+          contactStatus.dataset.state = 'error';
+          contactPhone.focus();
+          return;
+        }
+        if (contactMethod.value === 'Email' && !contactEmail.value.trim()) {
+          contactStatus.textContent = 'Please add an email address for your selected contact method.';
           contactStatus.dataset.state = 'error';
           contactEmail.focus();
           return;
@@ -400,6 +422,7 @@
           name: formData.get('name'),
           email: formData.get('email'),
           phone: formData.get('phone'),
+          contactMethod: formData.get('contactMethod'),
           message: formData.get('message'),
           website: formData.get('website'),
           confirmed: true,
