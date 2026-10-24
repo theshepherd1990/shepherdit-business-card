@@ -2,12 +2,15 @@
   "name": "shepherd-it-site",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "A responsive home and small-business IT support site for Henderson and Las Vegas.",
   "scripts": {
-    "start": "node server.mjs",
-    "dev": "node --watch server.mjs"
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "dev": "node --env-file-if-exists=.env --watch server.mjs",
+    "build": "node scripts/build-worker.mjs",
+    "validate": "node scripts/validate-worker.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   }
 }
