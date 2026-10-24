@@ -66,7 +66,7 @@
       .category-card:hover { border-color: #4c7a9a; background: #1a2a3a; transform: translateY(-1px); }
       .category-card[aria-pressed="true"] { border-color: var(--teal); background: var(--panel-selected); box-shadow: inset 0 0 0 1px rgba(85, 223, 204, .22); }
       .category-card:focus-visible, .button:focus-visible, .form-field input:focus-visible, .form-field select:focus-visible, .form-field textarea:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
-      .pixel-icon { width: 58px; height: 58px; image-rendering: pixelated; shape-rendering: crispEdges; }
+      .category-icon { width: 64px; height: 64px; filter: drop-shadow(0 5px 4px rgba(0, 0, 0, .38)); }
       .category-name { max-width: 100%; color: var(--text); font-size: 12px; font-weight: 700; line-height: 1.2; }
       .contact-panel { max-width: 940px; margin: 0 auto; padding: clamp(18px, 2.5vw, 26px); scroll-margin-top: 14px; }
       .contact-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
@@ -74,7 +74,7 @@
       .required-note { margin: 0; color: var(--muted); font-size: 11px; }
       .selected-category { display: grid; grid-template-columns: 58px 1fr; align-items: center; gap: 13px; margin: 0 0 15px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 8px; background: #0d1520; }
       .selected-category[hidden] { display: none; }
-      .selected-category .pixel-icon { width: 54px; height: 54px; }
+      .selected-category .category-icon { width: 54px; height: 54px; }
       .selected-category h3 { margin: 0 0 3px; color: var(--text); font-size: 14px; font-weight: 750; }
       .selected-category p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
       .selection-placeholder { margin: 0 0 15px; color: var(--muted); font-size: 12px; line-height: 1.45; }
@@ -166,70 +166,51 @@
 
           <div class="category-grid" role="group" aria-label="Choose a type of technology">
             <button class="category-card" type="button" data-category="Gaming / Personal Computer" aria-pressed="false">
-              <svg class="pixel-icon" viewBox="0 0 64 64" aria-hidden="true">
-                <g shape-rendering="crispEdges">
-                  <rect x="6" y="8" width="38" height="30" fill="#8da5b8"/><rect x="10" y="12" width="30" height="22" fill="#16283c"/>
-                  <rect x="13" y="26" width="5" height="5" fill="#55dfcc"/><rect x="18" y="21" width="5" height="10" fill="#57a9ff"/><rect x="23" y="24" width="5" height="7" fill="#aa91ff"/><rect x="28" y="17" width="5" height="14" fill="#f4c66a"/>
-                  <rect x="20" y="38" width="10" height="6" fill="#8da5b8"/><rect x="15" y="44" width="20" height="4" fill="#8da5b8"/>
-                  <rect x="46" y="15" width="13" height="34" fill="#667f96"/><rect x="49" y="19" width="7" height="24" fill="#1b2c3c"/><rect x="50" y="22" width="5" height="4" fill="#55dfcc"/><rect x="50" y="29" width="5" height="4" fill="#57a9ff"/><rect x="50" y="36" width="5" height="4" fill="#aa91ff"/><rect x="50" y="45" width="5" height="2" fill="#f4c66a"/>
-                </g>
-              </svg>
+              <svg class="category-icon" viewBox="0 0 64 64" aria-hidden="true">
+  <defs><linearGradient id="pcTop" x2="0" y2="1"><stop stop-color="#b5cee3"/><stop offset="1" stop-color="#647f9a"/></linearGradient><linearGradient id="pcFace" x2="0" y2="1"><stop stop-color="#829db6"/><stop offset="1" stop-color="#3d566e"/></linearGradient><linearGradient id="pcScreen" x2="0" y2="1"><stop stop-color="#23476b"/><stop offset="1" stop-color="#101d31"/></linearGradient><linearGradient id="pcTower" x2="1" y2="0"><stop stop-color="#506980"/><stop offset="1" stop-color="#182637"/></linearGradient></defs>
+  <path d="m5 14 7-7h33l-8 7v25H5z" fill="url(#pcTop)" stroke="#c2d8eb" stroke-width="1.5"/><path d="m37 14 8-7v25l-8 7z" fill="#40576c" stroke="#91a9be" stroke-width="1.3"/><path d="M9 17h25v17H9z" fill="url(#pcScreen)"/><path d="m12 30 7-8 5 5 5-6 3 3v3l-9 8H12z" fill="#55dfcc" opacity=".88"/><path d="M20 39h9v5h-9zM16 45h18l3 3H13z" fill="#91a9be"/><path d="m43 30 5-4h11v26l-5 4H43z" fill="#172536" stroke="#7089a1" stroke-width="1.5"/><path d="m43 30 5-4h11l-5 4z" fill="#9ab2c8"/><circle cx="50" cy="36" r="3" fill="#57a9ff"/><circle cx="50" cy="44" r="3" fill="#aa91ff"/><circle cx="50" cy="51" r="2" fill="#55dfcc"/><path d="M47 35a3 3 0 0 1 5 0" fill="none" stroke="#d5efff" stroke-width="1"/>
+</svg>
               <span class="category-name">Gaming / Personal Computer</span>
             </button>
 
-            <button class="category-card" type="button" data-category="Laptop" aria-pressed="false">
-              <svg class="pixel-icon" viewBox="0 0 64 64" aria-hidden="true">
-                <g shape-rendering="crispEdges">
-                  <rect x="12" y="11" width="40" height="29" fill="#90a7bb"/><rect x="16" y="15" width="32" height="21" fill="#18314a"/>
-                  <rect x="20" y="19" width="8" height="5" fill="#57a9ff"/><rect x="31" y="19" width="12" height="3" fill="#55dfcc"/><rect x="31" y="25" width="8" height="3" fill="#738aa1"/><rect x="20" y="28" width="23" height="3" fill="#aa91ff"/>
-                  <path d="M9 41h46l7 9H2z" fill="#72899d"/><rect x="23" y="43" width="18" height="3" fill="#263a4c"/><rect x="27" y="47" width="10" height="1" fill="#aab9c7"/>
-                </g>
-              </svg>
+<button class="category-card" type="button" data-category="Laptop" aria-pressed="false">
+              <svg class="category-icon" viewBox="0 0 64 64" aria-hidden="true">
+  <defs><linearGradient id="lapLid" x2="1" y2="1"><stop stop-color="#c3d9eb"/><stop offset=".5" stop-color="#718da6"/><stop offset="1" stop-color="#3b536b"/></linearGradient><linearGradient id="lapScreen" x2="0" y2="1"><stop stop-color="#2f74a7"/><stop offset="1" stop-color="#14243a"/></linearGradient><linearGradient id="lapBase" x2="0" y2="1"><stop stop-color="#b0c5d8"/><stop offset="1" stop-color="#506a82"/></linearGradient></defs>
+  <path d="m17 8 33 3v29L17 36z" fill="url(#lapLid)" stroke="#d6e8f5" stroke-width="1.4"/><path d="m21 13 25 2v20l-25-2z" fill="url(#lapScreen)"/><path d="m24 28 7-8 5 4 4-3 4 5v8l-20-2z" fill="#55dfcc" opacity=".86"/><path d="m17 37 33 3 9 9-42 6-14-8z" fill="url(#lapBase)" stroke="#c2d6e7" stroke-width="1.3"/><path d="m20 40 24 2 5 4-28 3-6-4z" fill="#34495d"/><path d="m28 48 13-1 2 2-13 2z" fill="#d1dfeb" opacity=".7"/>
+</svg>
               <span class="category-name">Laptop</span>
             </button>
 
-            <button class="category-card" type="button" data-category="Game Console" aria-pressed="false">
-              <svg class="pixel-icon" viewBox="0 0 64 64" aria-hidden="true">
-                <g shape-rendering="crispEdges">
-                  <path d="M12 30h40l7 8v11H5V38z" fill="#7d91a5"/><rect x="14" y="33" width="36" height="12" fill="#1b2c3c"/>
-                  <rect x="18" y="36" width="4" height="10" fill="#55dfcc"/><rect x="25" y="37" width="3" height="3" fill="#94a7ba"/><rect x="21" y="40" width="11" height="3" fill="#94a7ba"/><rect x="43" y="37" width="3" height="3" fill="#f4c66a"/><rect x="47" y="41" width="3" height="3" fill="#aa91ff"/>
-                  <rect x="19" y="16" width="26" height="12" fill="#5b7187"/><rect x="22" y="19" width="20" height="6" fill="#16283c"/><rect x="26" y="20" width="5" height="4" fill="#57a9ff"/><rect x="33" y="20" width="6" height="4" fill="#55dfcc"/>
-                </g>
-              </svg>
+<button class="category-card" type="button" data-category="Game Console" aria-pressed="false">
+              <svg class="category-icon" viewBox="0 0 64 64" aria-hidden="true">
+  <defs><linearGradient id="consoleSide" x2="1" y2="0"><stop stop-color="#95aac0"/><stop offset="1" stop-color="#435a70"/></linearGradient><linearGradient id="consoleFront" x2="0" y2="1"><stop stop-color="#43586c"/><stop offset="1" stop-color="#172435"/></linearGradient><linearGradient id="pad" x2="0" y2="1"><stop stop-color="#d6e4ef"/><stop offset="1" stop-color="#758da3"/></linearGradient></defs>
+  <path d="m10 16 8-6h20l-7 6v32h-21z" fill="url(#consoleSide)" stroke="#bed0df" stroke-width="1.4"/><path d="m31 16 7-6v31l-7 7z" fill="#26394b"/><path d="M14 19h13v24H14z" fill="url(#consoleFront)"/><path d="M17 22h7v18h-7z" fill="#0d1725"/><path d="M20 23v8" stroke="#55dfcc" stroke-width="2"/><path d="m31 45 4-4 15 1 9 6-3 8-11 2-7-5-8 2-6-4z" fill="url(#pad)" stroke="#e0ebf4" stroke-width="1.2"/><path d="m37 48 5 1m-2-3v5" stroke="#26394d" stroke-width="2" stroke-linecap="round"/><circle cx="50" cy="48" r="1.8" fill="#57a9ff"/><circle cx="54" cy="51" r="1.8" fill="#55dfcc"/>
+</svg>
               <span class="category-name">Game Console</span>
             </button>
 
-            <button class="category-card" type="button" data-category="Networking" aria-pressed="false">
-              <svg class="pixel-icon" viewBox="0 0 64 64" aria-hidden="true">
-                <g shape-rendering="crispEdges">
-                  <rect x="5" y="18" width="54" height="29" fill="#899eb1"/><rect x="9" y="22" width="46" height="20" fill="#1b2b3b"/>
-                  <rect x="13" y="26" width="6" height="7" fill="#6c8297"/><rect x="21" y="26" width="6" height="7" fill="#6c8297"/><rect x="29" y="26" width="6" height="7" fill="#6c8297"/><rect x="37" y="26" width="6" height="7" fill="#6c8297"/><rect x="45" y="26" width="6" height="7" fill="#6c8297"/>
-                  <rect x="13" y="36" width="3" height="3" fill="#55dfcc"/><rect x="21" y="36" width="3" height="3" fill="#57a9ff"/><rect x="29" y="36" width="3" height="3" fill="#55dfcc"/><rect x="37" y="36" width="3" height="3" fill="#f4c66a"/><rect x="47" y="36" width="4" height="3" fill="#71869a"/>
-                </g>
-              </svg>
+<button class="category-card" type="button" data-category="Cell-Phone" aria-pressed="false">
+              <svg class="category-icon" viewBox="0 0 64 64" aria-hidden="true">
+  <defs><linearGradient id="phoneSide" x2="1" y2="1"><stop stop-color="#d5e3ee"/><stop offset="1" stop-color="#71879c"/></linearGradient><linearGradient id="phoneScreen" x2="0" y2="1"><stop stop-color="#347eb5"/><stop offset="1" stop-color="#15283f"/></linearGradient></defs>
+  <path d="m25 6 24 6v39l-24-6z" fill="url(#phoneSide)" stroke="#e2edf5" stroke-width="1.5"/><path d="m20 10 5-4v39l-5 4z" fill="#50677d"/><path d="m25 11 20 5v30l-20-5z" fill="url(#phoneScreen)"/><path d="m29 16 12 3v3l-12-3z" fill="#d4f0ff" opacity=".8"/><path d="m29 23 6 1.5v6L29 29z" fill="#55dfcc"/><path d="m37 25 6 1.5v6L37 31z" fill="#f4c66a"/><path d="m29 32 6 1.5v6L29 38z" fill="#aa91ff"/><path d="m37 34 6 1.5v6L37 40z" fill="#57a9ff"/><path d="m33 43 5 1.2" stroke="#d5e8f5" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+              <span class="category-name">Cell-Phone</span>
+            </button>
+
+<button class="category-card" type="button" data-category="Networking" aria-pressed="false">
+              <svg class="category-icon" viewBox="0 0 64 64" aria-hidden="true">
+  <defs><linearGradient id="netTop" x2="0" y2="1"><stop stop-color="#bdd0df"/><stop offset="1" stop-color="#748ba0"/></linearGradient><linearGradient id="netFace" x2="0" y2="1"><stop stop-color="#69839a"/><stop offset="1" stop-color="#293e52"/></linearGradient></defs>
+  <path d="m5 22 10-9h43l-9 9z" fill="url(#netTop)" stroke="#d5e4ef" stroke-width="1.3"/><path d="M5 22h44v23H5z" fill="url(#netFace)" stroke="#a8bdcf" stroke-width="1.3"/><path d="m49 22 9-9v23l-9 9z" fill="#25384c" stroke="#7f97ac" stroke-width="1.2"/><path d="M10 27h6v8h-6zm8 0h6v8h-6zm8 0h6v8h-6zm8 0h6v8h-6zm8 0h6v8h-6z" fill="#172638" stroke="#bdcfdd" stroke-width=".8"/><path d="M11 39h3v2h-3zm8 0h3v2h-3zm8 0h3v2h-3zm8 0h3v2h-3zm8 0h3v2h-3z" fill="#55dfcc"/><path d="m15 19 28 0" stroke="#edf7ff" stroke-width="1.2" opacity=".7"/>
+</svg>
               <span class="category-name">Networking</span>
             </button>
 
-            <button class="category-card" type="button" data-category="Video Surveillance Systems" aria-pressed="false">
-              <svg class="pixel-icon" viewBox="0 0 64 64" aria-hidden="true">
-                <g shape-rendering="crispEdges">
-                  <rect x="29" y="12" width="6" height="8" fill="#8096aa"/><rect x="25" y="18" width="15" height="5" fill="#8096aa"/>
-                  <path d="M12 23h36l8 8v9H12z" fill="#97aabd"/><rect x="17" y="28" width="22" height="8" fill="#1b2d3e"/><rect x="21" y="27" width="9" height="10" fill="#57a9ff"/><rect x="24" y="29" width="4" height="6" fill="#14283a"/><rect x="42" y="29" width="7" height="5" fill="#55dfcc"/>
-                  <path d="M28 40h8v7l7 5H22l6-5z" fill="#73899e"/><rect x="18" y="52" width="28" height="4" fill="#8298ab"/>
-                </g>
-              </svg>
+<button class="category-card" type="button" data-category="Video Surveillance Systems" aria-pressed="false">
+              <svg class="category-icon" viewBox="0 0 64 64" aria-hidden="true">
+  <defs><linearGradient id="camBody" x2="0" y2="1"><stop stop-color="#d3e1ed"/><stop offset="1" stop-color="#71889e"/></linearGradient><linearGradient id="camLens" x2="1" y2="1"><stop stop-color="#55dfcc"/><stop offset=".45" stop-color="#3176a5"/><stop offset="1" stop-color="#112238"/></linearGradient><linearGradient id="nvr" x2="0" y2="1"><stop stop-color="#8299ad"/><stop offset="1" stop-color="#263a4d"/></linearGradient></defs>
+  <path d="m16 10 6-5h16l5 5-3 5H18z" fill="#95aabd" stroke="#d2e0eb" stroke-width="1.2"/><path d="m23 14 7 3-7 11-5-3z" fill="#647c92"/><path d="m11 23 6-9h30l8 7v13H11z" fill="url(#camBody)" stroke="#e1ebf3" stroke-width="1.3"/><path d="m17 21h24v11H17z" fill="#364c60"/><path d="m41 21 9 3v9l-9-1z" fill="#425b72"/><circle cx="28" cy="26.5" r="7" fill="#15283d" stroke="#e5f2fb" stroke-width="1.2"/><circle cx="28" cy="26.5" r="4.5" fill="url(#camLens)"/><circle cx="26.5" cy="25" r="1.3" fill="#e9ffff"/><path d="M25 36h9v7l5 4H18l7-4z" fill="#647b90"/><path d="m11 49 6-4h39v9H11z" fill="url(#nvr)" stroke="#a9bdce" stroke-width="1.2"/><path d="m17 48 4-2h35l-5 2z" fill="#d1deea"/><circle cx="47" cy="51" r="1.5" fill="#55dfcc"/><circle cx="52" cy="51" r="1.5" fill="#57a9ff"/>
+</svg>
               <span class="category-name">Video Surveillance Systems</span>
-            </button>
-
-            <button class="category-card" type="button" data-category="Cell-Phone" aria-pressed="false">
-              <svg class="pixel-icon" viewBox="0 0 64 64" aria-hidden="true">
-                <g shape-rendering="crispEdges">
-                  <rect x="18" y="5" width="28" height="54" rx="2" fill="#93a8ba"/><rect x="22" y="11" width="20" height="39" fill="#16283c"/>
-                  <rect x="25" y="16" width="6" height="6" fill="#57a9ff"/><rect x="33" y="16" width="6" height="6" fill="#55dfcc"/><rect x="25" y="25" width="6" height="6" fill="#f4c66a"/><rect x="33" y="25" width="6" height="6" fill="#aa91ff"/><rect x="25" y="34" width="14" height="3" fill="#8295a8"/><rect x="25" y="40" width="10" height="3" fill="#8295a8"/>
-                  <rect x="30" y="53" width="4" height="3" fill="#26384a"/>
-                </g>
-              </svg>
-              <span class="category-name">Cell-Phone</span>
             </button>
           </div>
 
@@ -261,9 +242,9 @@
                 <option value="Gaming / Personal Computer">Gaming / Personal Computer</option>
                 <option value="Laptop">Laptop</option>
                 <option value="Game Console">Game Console</option>
+                <option value="Cell-Phone">Cell-Phone</option>
                 <option value="Networking">Networking</option>
                 <option value="Video Surveillance Systems">Video Surveillance Systems</option>
-                <option value="Cell-Phone">Cell-Phone</option>
               </select>
             </div>
             <div class="form-row">
